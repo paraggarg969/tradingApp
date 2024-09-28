@@ -103,21 +103,21 @@ app.use('/api/user',userRoute);
 //         ProfilePic: "https://media.licdn.com/dms/image/D4D03AQGaSoUYKkTZ7Q/profile-displayphoto-shrink_200_200/0/1683865220653?e=2147483647&v=beta&t=K4tcbQwxLqiJWfM9C4zRT9zriWskJtWTKyfhTdEL2Z8"
 //     })
 
-const MONGO_URL = process.env.MONGO_URL;
+// const MONGO_URL = process.env.MONGO_URL;
 
-async function main() {
-    try {
-        await mongoose.connect(MONGO_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log("Connected to MongoDB");
-    } catch (err) {
-        console.error("Error connecting to MongoDB:", err);
-    }
-}
+// async function main() {
+//     try {
+//         await mongoose.connect(MONGO_URL, {
+//             useNewUrlParser: true,
+//             useUnifiedTopology: true,
+//         });
+//         console.log("Connected to MongoDB");
+//     } catch (err) {
+//         console.error("Error connecting to MongoDB:", err);
+//     }
+// }
 
-main();
+// main();
 
 app.listen(process.env.PORT, () => {
     console.log(`succefully run on ${process.env.PORT}`);
