@@ -1,8 +1,15 @@
-const user = require("../model/user.model").user;
+const user = require("../model/user.model");
 
 const registerUser = async(req,res)=>{
     try{
         console.log("user details",req.body);
+
+        const existingUser = await user.findOne({ email: req.body.email });
+        if (existingUser) {
+            console.log("User is already registered with this email:", req.body.email);
+            return res.send('You are already registered');  
+        }
+
         let userData = user({
             username: req.body.username,
             email: req.body.email,
