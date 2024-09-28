@@ -37,4 +37,54 @@ const getUser = async(req,res) => {
     }
 }
 
-module.exports = {registerUser,getUser};
+const getUserById = async (req,res) => {
+    try{
+        user.findById(req.paras.id)
+        .then(data => res.send(data))
+        .catch(err => res.send('something went wrong'))
+    }
+    catch(err){
+        console.log(err);
+        res.send('ERR');
+    }
+}
+
+const updateUserById = async(req,res) => {
+    try{
+        const updateUser = await user.findByIdAndUpdate(
+            req.params.id,
+            {
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password
+            },
+            {
+                new: true
+            }
+        )
+        if(!updateUser){
+            return res.status(404).send("User not found");
+        }
+        res.send(updateUser);
+    }
+    catch(err){
+        console.log(err);
+        res.send('ERR');
+    }
+}
+
+const deleteUserById = async(req,res) => {
+    try{
+        const deleteUser = await user.findByIdAndDelete(req.params.id);
+        if(!deleteUser){
+            return res.status(404).send("User not found");
+        }
+        res.send('User deleted successfully');
+    }
+    catch(err){
+        console.log(err);
+        res.send('ERR');
+    }
+}
+
+module.exports = {registerUser,getUser,getUserById,updateUserById,deleteUserById};
